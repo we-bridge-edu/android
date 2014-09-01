@@ -3,6 +3,8 @@ package com.webridge.GeekQuote;
 import android.app.Activity;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.webridge.GeekQuote.model.Quote;
 
@@ -12,6 +14,7 @@ import java.util.Date;
 public class QuoteListActivity extends Activity {
 
     private ArrayList<Quote> quotes = new ArrayList<Quote>();
+    private Resources res;
 
     /**
      * Called when the activity is first created.
@@ -22,7 +25,7 @@ public class QuoteListActivity extends Activity {
         setContentView(R.layout.main);
 
         // Getting the quotes from the resources
-        Resources res = getResources();
+        res = getResources();
         String[] strQuotes = res.getStringArray(R.array.quotes);
 
         // Clear the quotes and add from the resources
@@ -49,8 +52,18 @@ public class QuoteListActivity extends Activity {
         // Add the quote to the list of quotes
         quotes.add(quote);
 
-        // TODO: Remove when quotes are visible on UI
-        Toast.makeText(getApplicationContext(), strQuote, Toast.LENGTH_SHORT)
-                .show();
+        // Create a Text view representing the quote
+        TextView quoteView = new TextView(this);
+        quoteView.setText(strQuote);
+
+        if(quotes.size() % 2 == 0)
+            quoteView.setBackgroundColor(
+                    res.getColor(R.color.quoteDarkerBackground)
+            );
+
+        LinearLayout quotesView = (LinearLayout) findViewById(
+                R.id.quotesView
+            );
+        quotesView.addView(quoteView);
     }
 }

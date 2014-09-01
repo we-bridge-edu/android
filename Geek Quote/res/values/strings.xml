@@ -6,4 +6,6 @@
         <item>"The second quote"</item>
         <item>"The third quote"</item>
     </string-array>
+
+    <color name="quoteDarkerBackground">#424242</color>
 </resources>
