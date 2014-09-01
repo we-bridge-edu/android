@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Geek Quote</string>
+    <string-array name="quotes">
+        <item>"The first quote"</item>
+        <item>"The second quote"</item>
+        <item>"The third quote"</item>
+    </string-array>
+</resources>
