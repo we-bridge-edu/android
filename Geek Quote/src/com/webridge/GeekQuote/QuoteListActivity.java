@@ -2,6 +2,7 @@ package com.webridge.GeekQuote;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -92,6 +93,19 @@ public class QuoteListActivity extends Activity {
                 }
         );
 
+        // Setting the item touch event
+        quotesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Quote selectedQuote = (Quote)adapterView.getItemAtPosition(i);
+
+                Intent intent = new Intent(view.getContext(), QuoteActivity.class);
+                intent.putExtra("quoteValue", selectedQuote);
+                intent.putExtra("quoteIndex", i);
+                startActivityForResult(intent, 1);
+            }
+        });
+
         // Getting the quotes from the resources
         res = getResources();
         String[] strQuotes = res.getStringArray(R.array.quotes);
@@ -120,5 +134,25 @@ public class QuoteListActivity extends Activity {
 
         // Add the quote to the list of quotes
         quotesAdapter.add(quote);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //This method is called when an the QuoteActivity is finished
+
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // If the user canceled we do nothing
+        if(resultCode == RESULT_CANCELED) return;
+
+        // We get and validate the quote index that was updated
+        int quoteIndex = data.getIntExtra("quoteIndex", -1);
+        if(quoteIndex == -1) return;
+        // Get the freshly edited quote
+        Quote newQuote = (Quote)data.getSerializableExtra("quoteValue");
+
+        // Updating the quote at the specified index and refreshing the list
+        quotes.set(quoteIndex, newQuote);
+        quotesAdapter.notifyDataSetChanged();
     }
 }

@@ -1,14 +1,15 @@
 package com.webridge.GeekQuote.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Thomas on 9/1/2014.
  */
-public class Quote {
+public class Quote implements Serializable {
 
     private String strQuote;
-    private int rating;
+    private float rating;
     private Date creationDate;
 
     public String getStrQuote() {
@@ -19,11 +20,11 @@ public class Quote {
         this.strQuote = strQuote;
     }
 
-    public int getRating() {
+    public float getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(float rating) {
         this.rating = rating;
     }
 
