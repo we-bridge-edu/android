@@ -3,7 +3,6 @@
               android:orientation="vertical"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
-              android:id="@+id/quotesView"
         >
     <LinearLayout android:orientation="horizontal"
                   android:layout_width="fill_parent"
@@ -12,13 +11,21 @@
 
         <EditText android:layout_width="wrap_content"
                   android:layout_height="fill_parent"
-                  android:layout_weight="1"/>
+                  android:layout_weight="1"
+                  android:id="@+id/addQuoteText"
+                />
 
         <Button android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:text="Add"
-                android:id="@+id/addQuoteBtn"/>
-
+                android:id="@+id/addQuoteBtn"
+                />
     </LinearLayout>
+    <ListView android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:id="@+id/quotesView"
+            >
+
+    </ListView>
 </LinearLayout>
 
